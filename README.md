@@ -52,4 +52,4 @@ npm run build
 
 ```
 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/DouglasTecnologia1977/pannellum-measurement-plugin/blob/main/LICENSE) file for details.
