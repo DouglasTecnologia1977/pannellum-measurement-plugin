@@ -1,0 +1,29 @@
+pannellum-measurement-plugin/
+├── assets/
+│   ├── css/
+│   │   ├── pannellum-measurement.css
+│   │   └── pannellum-hotspots.css
+│   └── images/
+│       ├── measurement-icons.png
+│       └── panorama-icon.svg
+├── actions/
+│   ├── measurement.js
+│   └── calibration.js
+├── components/
+│   ├── PannellumViewer.jsx
+│   ├── MeasurementControls.jsx
+│   ├── CalibrationTool.jsx
+│   ├── ExportTool.jsx
+│   └── ResultsPanel.jsx
+├── reducers/
+│   ├── measurement.js
+│   ├── calibration.js
+│   └── index.js
+├── epics/
+│   └── measurementEpics.js
+├── plugins/
+│   ├── PannellumMeasurement.jsx
+│   └── pluginConfig.js
+├── index.js
+├── package.json
+└── README.html

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pannellum Measurement Plugin for MapStore2</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; }
+        h1, h2, h3 { color: #2c3e50; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; }
+        pre { background: #333; color: #fff; padding: 10px; border-radius: 5px; overflow-x: auto; }
+        .note { background: #e7f4ff; padding: 10px; border-left: 4px solid #3498db; margin: 10px 0; }
+        .warning { background: #fff3e0; padding: 10px; border-left: 4px solid #ffa000; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>Pannellum Measurement Plugin for MapStore2</h1>
+    
+    <div class="note">
+        <strong>Version:</strong> 1.0.0<br>
+        <strong>Last Updated:</strong> 2023-11-15
+    </div>
+
+    <h2>1. Visão Geral</h2>
+    <p>Este plugin integra o visualizador panorâmico Pannellum ao MapStore2 com ferramentas avançadas de medição, incluindo:</p>
+    <ul>
+        <li>Medição de distâncias entre pontos</li>
+        <li>Cálculo de áreas delimitadas</li>
+        <li>Calibração para medidas reais</li>
+        <li>Persistência e exportação de medições</li>
+        <li>Visualização interativa de panoramas 360°</li>
+    </ul>
+
+    <h2>2. Instalação</h2>
+
+    <h3>2.1. Pré-requisitos</h3>
+    <ul>
+        <li>MapStore2 versão 2021.02.xx ou superior</li>
+        <li>Node.js 14.x ou superior</li>
+        <li>NPM 6.x ou superior</li>
+    </ul>
+
+    <h3>2.2. Passo a Passo para Instalação</h3>
+
+    <div class="note">
+        <strong>Nota:</strong> Todas as operações devem ser executadas no diretório raiz do MapStore2.
+    </div>
+
+    <h4>Passo 1: Adicionar o plugin ao projeto</h4>
+    <p>Crie a pasta do plugin no diretório <code>web/client/plugins</code>:</p>
+    <pre>
+mkdir -p web/client/plugins/pannellum-measurement
+cd web/client/plugins/pannellum-measurement</pre>
+
+    <p>Copie todos os arquivos do plugin para esta pasta.</p>
+
+    <h4>Passo 2: Instalar dependências</h4>
+    <pre>
+npm install pannellum@2.5.6 --save</pre>
+
+    <h4>Passo 3: Registrar o plugin</h4>
+    <p>Adicione o plugin ao arquivo <code>localConfig.json</code>:</p>
+    <pre>
+{
+    "plugins": {
+        "desktop": [
+            ...outros plugins...,
+            "PannellumMeasurement"
+        ],
+        "mobile": [
+            ...outros plugins...,
+            "PannellumMeasurement"
+        ]
+    }
+}</pre>
+
+    <h4>Passo 4: Adicionar CSS</h4>
+    <p>Inclua o CSS no arquivo <code>web/client/product/assets/css/viewer.css</code>:</p>
+    <pre>
+@import "../../plugins/pannellum-measurement/assets/css/pannellum-measurement.css";</pre>
+
+    <h2>3. Configuração</h2>
+
+    <h3>3.1. Configurações Básicas</h3>
+    <p>As seguintes propriedades podem ser configuradas no <code>localConfig.json</code>:</p>
+    <pre>
+{
+    "plugins": {
+        "PannellumMeasurement": {
+            "defaultPanorama": "path/to/default/panorama.jpg",
+            "defaultHotSpots": [
+                {
+                    "pitch": 0,
+                    "yaw": 0,
+                    "type": "info",
+                    "text": "Default Hotspot"
+                }
+            ],
+            "measurementPrecision": 2
+        }
+    }
+}</pre>
+
+    <h3>3.2. Configuração Avançada</h3>
+    <p>Para configurações avançadas do Pannellum, edite o componente <code>PannellumViewer.jsx</code>.</p>
+
+    <h2>4. Uso do Plugin</h2>
+
+    <h3>4.1. Interface do Usuário</h3>
+    <p>O plugin adiciona um botão na barra de ferramentas do MapStore2. Ao clicar, abre o visualizador panorâmico com os controles de medição.</p>
+
+    <h3>4.2. Funcionalidades</h3>
+    <ol>
+        <li>
+            <strong>Medir Distância:</strong>
+            <ol>
+                <li>Clique no botão "Measure Distance"</li>
+                <li>Clique em dois ou mais pontos no panorama</li>
+                <li>A distância será calculada e exibida</li>
+            </ol>
+        </li>
+        <li>
+            <strong>Medir Área:</strong>
+            <ol>
+                <li>Clique no botão "Measure Area"</li>
+                <li>Clique em três ou mais pontos para delimitar a área</li>
+                <li>A área será calculada e exibida</li>
+            </ol>
+        </li>
+        <li>
+            <strong>Calibrar:</strong>
+            <ol>
+                <li>Clique em "Start Calibration"</li>
+                <li>Marque os mesmos pontos em duas imagens diferentes</li>
+                <li>Informe a distância real conhecida entre os pontos</li>
+                <li>O sistema calculará o fator de escala para medições precisas</li>
+            </ol>
+        </li>
+        <li>
+            <strong>Exportar Medições:</strong>
+            <ol>
+                <li>Clique em "Export Measurements"</li>
+                <li>Selecione o formato (JSON ou CSV)</li>
+                <li>Faça download ou copie os dados</li>
+            </ol>
+        </li>
+    </ol>
+
+    <h2>5. Implantação em Produção</h2>
+
+    <h3>5.1. Build e Deploy</h3>
+    <p>Execute o build do MapStore2 incluindo o plugin:</p>
+    <pre>
+npm run build</pre>
+
+    <p>O plugin será incluído no bundle principal do MapStore2.</p>
+
+    <h3>5.2. Otimizações para Produção</h3>
+    <ul>
+        <li>Configure o cache HTTP para os assets do plugin</li>
+        <li>Verifique a compressão de ativos no servidor web</li>
+        <li>Considere usar um CDN para as bibliotecas externas</li>
+    </ul>
+
+    <div class="warning">
+        <strong>Atenção:</strong> Em ambientes de produção com muitas imagens panorâmicas, considere implementar:
+        <ul>
+            <li>Lazy loading das imagens</li>
+            <li>Pré-processamento das imagens para tamanhos otimizados</li>
+            <li>Cache de medições no servidor</li>
+        </ul>
+    </div>
+
+    <h2>6. Solução de Problemas</h2>
+
+    <h3>6.1. Problemas Comuns</h3>
+    <table border="1" cellpadding="5" cellspacing="0">
+        <tr>
+            <th>Problema</th>
+            <th>Solução</th>
+        </tr>
+        <tr>
+            <td>Plugin não aparece na interface</td>
+            <td>
+                <ol>
+                    <li>Verifique se o plugin está listado no localConfig.json</li>
+                    <li>Confira o console do navegador por erros de JavaScript</li>
+                    <li>Verifique se o build foi executado corretamente</li>
+                </ol>
+            </td>
+        </tr>
+        <tr>
+            <td>Imagens não carregam</td>
+            <td>
+                <ol>
+                    <li>Verifique as permissões do arquivo</li>
+                    <li>Confira se o caminho está correto</li>
+                    <li>Teste com uma imagem URL pública primeiro</li>
+                </ol>
+            </td>
+        </tr>
+        <tr>
+            <td>Medições imprecisas</td>
+            <td>
+                <ol>
+                    <li>Execute o processo de calibração</li>
+                    <li>Use pontos de referência conhecidos</li>
+                    <li>Verifique a qualidade da imagem panorâmica</li>
+                </ol>
+            </td>
+        </tr>
+    </table>
+
+    <h2>7. API e Customização</h2>
+
+    <h3>7.1. API Pública</h3>
+    <p>O plugin expõe os seguintes métodos que podem ser acessados via JavaScript:</p>
+    <pre>
+// Acessar o plugin
+const plugin = MapStore2.getPlugin('PannellumMeasurement');
+
+// Métodos disponíveis
+plugin.loadPanorama(url);          // Carrega uma nova imagem panorâmica
+plugin.startMeasurement(type);     // Inicia medição ('distance' ou 'area')
+plugin.getMeasurements();          // Retorna as medições atuais
+plugin.exportData(format);         // Exporta dados ('json' ou 'csv')</pre>
+
+    <h3>7.2. Customização</h3>
+    <p>Para customizar a aparência, edite o arquivo CSS:</p>
+    <pre>
+/* Exemplo de customização */
+.measurement-point {
+    background-color: #ff0000;
+    border-color: #ffffff;
+    width: 15px;
+    height: 15px;
+}</pre>
+
+    <h2>8. Licença e Créditos</h2>
+    <p>Este plugin é distribuído sob licença MIT.</p>
+    <p>Utiliza as seguintes bibliotecas:</p>
+    <ul>
+        <li>Pannellum - MIT License</li>
+        <li>React - MIT License</li>
+        <li>Bootstrap - MIT License</li>
+    </ul>
+
+    <div class="note">
+        <strong>Suporte:</strong> Para questões técnicas, abra uma issue no repositório oficial do projeto.
+    </div>
+</body>
+</html>

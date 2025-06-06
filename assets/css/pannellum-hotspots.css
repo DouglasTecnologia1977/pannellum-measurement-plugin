@@ -1,0 +1,40 @@
+/* Estilos customizados para hotspots do Pannellum */
+.pnlm-hotspot {
+    transition: all 0.3s ease;
+}
+
+.pnlm-hotspot.measurement-point:hover {
+    transform: scale(1.2);
+    background-color: rgba(255, 0, 0, 0.9);
+}
+
+.pnlm-hotspot-base {
+    pointer-events: none;
+}
+
+/* Estilos para tooltips */
+.pnlm-tooltip {
+    max-width: 200px;
+    white-space: nowrap;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos para o container do Pannellum */
+.pnlm-container {
+    background-color: #000;
+}
+
+/* Estilos para os controles do Pannellum */
+.pnlm-controls-container {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+}
+
+.pnlm-control {
+    filter: invert(1);
+    opacity: 0.8;
+}
+
+.pnlm-control:hover {
+    opacity: 1;
+}
