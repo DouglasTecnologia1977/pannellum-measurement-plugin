@@ -1,7 +1,7 @@
 # Pannellum Measurement Plugin for MapStore2
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub stars](https://img.shields.io/github/stars/seu-usuario/mapstore-pannellum-plugin)](https://github.com/seu-usuario/mapstore-pannellum-plugin/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/seu-usuario/pannellum-measurement-plugin)](https://github.com/seu-usuario/pannellum-measurement-plugin/stargazers)
 
 Advanced panorama measurement tools for MapStore2 with distance, area measurement, and calibration features.
 
@@ -25,7 +25,7 @@ npm install @douglastecnologia/pannellum-measurement-plugin
 ````
 ## Usage
 ```bash
-import PannellumMeasurement from 'mapstore-pannellum-plugin';
+import PannellumMeasurement from 'pannellum-measurement-plugin';
 
 // Add to MapStore2 plugins
 {
@@ -42,7 +42,7 @@ Documentation Wiki
 ## Development
 ```bash
 # Clone repository
-git clone https://github.com/DouglasTecnologia1977/mapstore-pannellum-plugin.git
+git clone https://github.com/DouglasTecnologia1977/pannellum-measurement-plugin.git
 
 # Install dependencies
 npm install
