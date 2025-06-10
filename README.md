@@ -20,7 +20,7 @@ Advanced panorama measurement tools for MapStore2 with distance, area measuremen
 ## Installation
 
 ```bash
-npm install mapstore-pannellum-plugin
+npm install @douglastecnologia/pannellum-measurement-plugin
 
 ````
 ## Usage
